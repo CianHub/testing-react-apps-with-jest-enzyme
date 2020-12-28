@@ -6,8 +6,16 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-test('renders learn react link', () => {
+test('renders app without error', () => {
   const wrapper = shallow(<App />);
-  console.log(wrapper.debug());
-  expect(wrapper).toBeTruthy();
+  const appComponent = wrapper.find("[data-test='component-app']");
+  expect(appComponent.length).toBe(1);
 });
+
+test('renders button', () => {});
+
+test('renders counter display', () => {});
+
+test('counter starts at 0', () => {});
+
+test('increments counter on click', () => {});
