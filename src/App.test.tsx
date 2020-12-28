@@ -53,3 +53,24 @@ test('increments counter on click', () => {
   const count = findByTestAttr(wrapper, 'component-count').text();
   expect(count).toBe('1');
 });
+
+test('decrements counter on click', () => {
+  const wrapper = setup();
+  const incButton = findByTestAttr(wrapper, 'component-button');
+  incButton.simulate('click');
+  const button = findByTestAttr(wrapper, 'component-dec-button');
+  button.simulate('click');
+  const count = findByTestAttr(wrapper, 'component-count').text();
+  expect(count).toBe('0');
+});
+
+test('shows error when decrement is clicked if count is 0', () => {
+  const wrapper = setup();
+  const button = findByTestAttr(wrapper, 'component-dec-button');
+  button.simulate('click');
+  const count = findByTestAttr(wrapper, 'component-count').text();
+  const err = findByTestAttr(wrapper, 'component-error');
+
+  expect(count).toBe('0');
+  expect(err.length).toBe(1);
+});
